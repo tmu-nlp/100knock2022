@@ -1,19 +1,19 @@
-[![Update-Progress](https://github.com/tmu-nlp/100knock2021/actions/workflows/update-progress.yml/badge.svg)](https://github.com/tmu-nlp/100knock2021/actions/workflows/update-progress.yml)
+[![Update-Progress](https://github.com/tmu-nlp/100knock2022/actions/workflows/update-progress.yml/badge.svg)](https://github.com/tmu-nlp/100knock2022/actions/workflows/update-progress.yml)
 
-# 100knock2021
+# 100knock2022
 
 小町研2021年度新入生向け勉強会として、言語処理100本ノックに取り組みます。  
 教材URL: https://nlp100.github.io/ja/
 
 毎週1章分（10問）解いてください。  
-勉強会のときに1人1問ずつ自分のコードを説明してもらいます。  
+勉強会のときに1人2問ずつ自分のコードを説明してもらいます。  
 
 ## usage
 
 初回はこのレポジトリを clone してください。
 
 ```
-$ git clone https://github.com/tmu-nlp/100knock2021.git
+$ git clone https://github.com/tmu-nlp/100knock2022.git
 ```
 
 コードを書いたら remote repository に push してください。
@@ -38,7 +38,7 @@ chapter##/knockXX.py のフォルダ名とファイル名を間違えると進�
 ![progress](progress.png)
 
 
-# 100knock2021 (English) 
+# 100knock2022 (English) 
 
 We will work NLP 100 knockings as the study meeting for the newcomers in 2021. 
 Let's solve the 10 questions every week.
@@ -46,7 +46,7 @@ TA and participants review your code.
 
 You should clone this repository the first time.
 ```
-$ git clone https://github.com/tmu-nlp/100knock2021.git
+$ git clone https://github.com/tmu-nlp/100knock.git
 ```
 
 "##" and "XX" mean "two-digit question number". (e.g. `chapter01`, `knock00.py`)
