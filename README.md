@@ -1,12 +1,10 @@
-[![Update-Progress](https://github.com/tmu-nlp/100knock2022/actions/workflows/update-progress.yml/badge.svg)](https://github.com/tmu-nlp/100knock2022/actions/workflows/update-progress.yml)
-
 # 100knock2022
 
 小町研2022年度新入生向け勉強会として、言語処理100本ノックに取り組みます。  
 教材URL: https://nlp100.github.io/ja/
 
 毎週1章分（10問）解いてください。   
-勉強会の時間には、事前に割り当てられた問題の解説をしてもらいます。（仮）
+勉強会の時間には、事前に割り当てられた問題の解説をしてもらいます。
 
 ## usage
 
