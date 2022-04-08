@@ -48,3 +48,4 @@ jobs:
           git add $FILE_NAME
           git diff-index --quiet HEAD || git commit -m "[Bot] Update ${FILE_NAME}"
           git push
+
