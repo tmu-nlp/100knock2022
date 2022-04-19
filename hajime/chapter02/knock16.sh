@@ -1,0 +1,1 @@
+split -n 3 -d popular-names.txt bash-sub-names-
