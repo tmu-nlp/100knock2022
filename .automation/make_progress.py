@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 
+import datetime
+
 
 class User:
     def __init__(self, name, path):
@@ -55,17 +57,41 @@ def plot_progress(users: np.array, scores: np.array):
             tick_label=users,
             label=label,
         )
+    today = datetime.date.today()
+    date_list = list()
+    date_list.append(datetime.date(2022, 4, 22))
+    date_list.append(datetime.date(2022, 5, 6))
+    date_list.append(datetime.date(2022, 5, 13))
+    date_list.append(datetime.date(2022, 5, 20))
+    date_list.append(datetime.date(2022, 5, 27))
+    date_list.append(datetime.date(2022, 6, 3))
+    date_list.append(datetime.date(2022, 6, 10))
+    date_list.append(datetime.date(2022, 6, 17))
+    date_list.append(datetime.date(2022, 6, 24))
+    date_list.append(datetime.date(2022, 7, 1))
+
+    d = [date for date in date_list if today >= date]
+    xmin, xmax = plt.xlim()
+    if len(d) != 10:
+        label = "{}Border".format(str(date_list[len(d)])[5:])
+        plt.hlines((len(d)+1) * 10, xmin, xmax, linewidth=2, 
+                   linestyle='dashed', color="gray", label=label)
+        plt.xlim(xmin, xmax)
+
+    label = "{}Border".format(str(d[-1])[5:])
+    plt.hlines(len(d) * 10, xmin, xmax, linewidth=4, color="red", label=label)
+    plt.xlim(xmin, xmax)
+
 
     # グラフの設定
     plt.xticks(rotation=30, fontsize=10)
     # 縦軸のラベルを 10 問刻みにする
     whole = sum(QUESTIONS)
-    plt.ylim(0, whole)
+    plt.ylim(0, whole+1)
     plt.yticks(np.arange(0, whole + 1, 10))
     # 凡例をグラフの外側に表示する
     plt.legend(bbox_to_anchor=(1.28, 1.0))
     plt.subplots_adjust(right=0.8)
-
     # グラフを書き出す
     plt.savefig("progress.png")
 
