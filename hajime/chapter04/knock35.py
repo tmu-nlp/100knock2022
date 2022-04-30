@@ -8,7 +8,9 @@ word_dict = defaultdict(lambda: 0)
 
 for line in knock30.sentence_list:
     for morph in line:
-        word_dict[morph["surface"]] += 1
+        if morph["pos"] == "記号":
+            continue
+        word_dict[morph["base"]] += 1
 
 sort_word_dict = OrderedDict(sorted(word_dict.items(), key = lambda x:x[1], reverse=True))
 
