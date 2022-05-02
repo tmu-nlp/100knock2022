@@ -1,1 +1,4 @@
-tail -n 8 popular-names.txt > bash15.txt
+tail -n $1 popular-names.txt > bash15.txt
+# $1は引数として与える.
+# 「bash knock14.sh 4」 であれば，末尾から4つ切り出す.
+# このコマンドでは末尾から順に出力されるのではなく，末尾からn個切り取られたものが出力される.

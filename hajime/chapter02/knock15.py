@@ -8,9 +8,7 @@ with open ('popular-names.txt') as f1:
     trg_list = f1.readlines()
     trg_list_len = len(trg_list)
     for i in range(len(trg_list)):
-                trg_list[i] = trg_list[i].replace('\n','')
-# print(trg_list_len)
-#print(trg_list[trg_list_len - (num-1) - 1])
+        trg_list[i] = trg_list[i].replace('\n','')
 
 for i in reversed(range(trg_list_len - num, trg_list_len)):
     print(trg_list[i])
