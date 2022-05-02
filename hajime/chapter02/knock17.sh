@@ -1,1 +1,0 @@
-cat bash11.txt | cut -d " " -f 1 | sort | uniq > bash17.txt

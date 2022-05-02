@@ -1,1 +1,0 @@
-sort -k 3 -r -n popular-names.txt > knock18-sh.txt
