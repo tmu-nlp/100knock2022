@@ -17,3 +17,4 @@ for text in uk:
         continue
 
 [print(res) for res in category_data]
+#test
