@@ -1,2 +1,2 @@
-a = "stressed"
+a = 'stressed'
 print(a[::-1])
