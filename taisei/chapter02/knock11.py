@@ -4,3 +4,5 @@ data = f.readlines()
 for i, line in enumerate(data):
     data[i] = line.replace('\t', ' ')
 f_write.writelines(data)
+f.close()
+f_write.close()

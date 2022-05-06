@@ -11,3 +11,5 @@ name_set = set(name_list)
 name_set = sorted(name_set)
 for name in name_set:
     f_unique.write(name + '\n')
+f.close()
+f_unique.close()

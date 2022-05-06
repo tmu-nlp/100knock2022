@@ -5,3 +5,5 @@ data = f.readlines()
 n = int(sys.argv[1])
 for i in range (n):
     f_head.write(data[i])
+f.close()
+f_head.close()

@@ -6,3 +6,6 @@ for i, line in enumerate(data):
     line = line.strip().split('\t')
     f_col1.write(line[0] + '\n')
     f_col2.write(line[1] + '\n')
+f.close()
+f_col1.close()
+f_col2.close()

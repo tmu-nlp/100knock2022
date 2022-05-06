@@ -12,3 +12,5 @@ name_dic = sorted(name_dic.items(), reverse=True, key=lambda x:x[1]) #name_dic„Å
 #print(type(name_dic))
 for k, v in name_dic:
     f_sort1.write(str(v) + ' ' + k + '\n')
+f.close()
+f_sort1.close()

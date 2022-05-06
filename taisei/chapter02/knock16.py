@@ -19,4 +19,5 @@ for i in range(n):
         f_split.write('\t'.join(data[count]) + '\n')
         count += 1
         remainder -= 1
-
+    f_split.close()
+f.close()

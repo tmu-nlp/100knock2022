@@ -6,4 +6,6 @@ data_col2 = f_col2.readlines()
 for i in range (len(data_col1)):
     join_word = data_col1[i].strip() + '\t' + data_col2[i].strip() + '\n'
     f_join.write(join_word)
-    
+f_col1.close()
+f_col2.close()
+f_join.close()
