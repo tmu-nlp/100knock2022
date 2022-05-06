@@ -1,6 +1,3 @@
-from pyparsing import line
-
-
 N = int(input('N = '))
 
 with open('popular-names.txt') as rf:
