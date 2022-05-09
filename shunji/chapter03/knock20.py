@@ -1,13 +1,8 @@
-import json 
+import pandas as pd
 
-filename = 'jawiki-country.json'
-with open('./jawiki-country.json', 'r') as f:
-  for line in f:
-    line = json.loads(line)
-    if line['title'] == 'イギリス':
-      article_uk = line['text']
-      break
+wiki = pd.read_json("jawiki-country.json", lines=True) # lines=Trueで\nごと一行として取得
+uk = wiki[wiki['title'] == 'イギリス']['text'].values[0] # ukのままだとndarray型
 
-print(article_uk)
-with open('article_uk.txt', 'w') as wf:
-    wf.write(article_uk)
+with open('uk.txt', 'w') as f:
+  f.write(str(uk))
+print(uk)
