@@ -4,8 +4,7 @@
 
 line = "Now I need a drink, alcoholic of course, after the heavy lectures involving quantum mechanics."
 
-new_line = line.replace(",","")#カンマを除く
-new_line = new_line.replace(".","")#ピリオドを除く，ここ2個に分けるの気持ち悪いどうにかしたい
+new_line = line.replace(",","").replace(".","")#カンマを除く
 my_list = new_line.split()#文を空白区切りで配列に格納
 
 num_list = []

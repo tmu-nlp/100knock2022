@@ -9,7 +9,8 @@ def get_surface(sentences):#単語の表層形だけのリストを作成
     for sentence in sentences:
         words = []
         for morpheme in sentence:
-            words.append(morpheme["surface"])
+            if morpheme["pos"] != "記号":
+                words.append(morpheme["surface"])
         surface_list.append(words)
     return surface_list
 
@@ -32,5 +33,5 @@ if __name__ == "__main__":
     #グラフ出力
     plt.xlabel("猫と共起する単語")
     plt.ylabel("頻度")
-    plt.bar(result.keys(), result.values())#棒グラフ
+    plt.bar(result.keys(), result.values())
     plt.savefig('output37.png')
