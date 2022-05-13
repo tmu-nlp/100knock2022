@@ -20,4 +20,4 @@ for line in data:
     line = re.sub(pattern5, r'\1', line)
     line = re.sub(pattern6, '', line)
     line = re.sub(pattern7, r'\1', line)
-    print(line)
+    print(line) #京太郎最強
