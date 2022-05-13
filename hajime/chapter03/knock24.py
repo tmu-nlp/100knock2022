@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+'''
+24. ファイル参照の抽出Permalink
+記事から参照されているメディアファイルをすべて抜き出せ．
+'''
 
 import json
 import gzip
