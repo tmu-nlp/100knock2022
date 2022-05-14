@@ -24,7 +24,6 @@ $ git commit -m 'your message'
 $ git pull
 $ git push origin main
 ```
-test
 ## 注意事項
 
 新入生はできるだけ Python3 系で書いてください。
