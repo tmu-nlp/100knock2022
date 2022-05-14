@@ -19,7 +19,7 @@ $ git clone https://github.com/tmu-nlp/100knock2022.git
 ```
 $ git branch <任意のブランチ名(以下、b_name)> (e.g. git branch kazuma)
 $ git checkout <b_name>
-$ git add <任意のファイル> (e.g. git add ./kazuma/chapter01/knock01.py)
+$ git add <任意のファイル・フォルダ> (e.g. git add ./kazuma/chapter01/knock01.py)
 $ git commit -m 'your message'
 $ git pull origin main
 $ git push origin <b_name>
@@ -52,7 +52,7 @@ $ git clone https://github.com/tmu-nlp/100knock.git
 ```
 $ git branch <any branch name(b_name)> (e.g. git branch kazuma)
 $ git checkout <b_name>
-$ git add <any files> (e.g. git add ./kazuma/chapter01/knock01.py)
+$ git add <any file or folder> (e.g. git add ./kazuma/chapter01/knock01.py)
 $ git commit -m 'your message'
 $ git pull origin main
 $ git push origin <b_name>
