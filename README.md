@@ -50,10 +50,12 @@ $ git clone https://github.com/tmu-nlp/100knock.git
 
 "##" and "XX" mean "two-digit question number". (e.g. `chapter01`, `knock00.py`)
 ```
-$ git pull
-$ git add ./<user_name>/chapter##/knockXX.py
+$ git branch <any branch name(b_name)> (e.g. git branch kazuma)
+$ git checkout <b_name>
+$ git add <any files> (e.g. git add ./kazuma/chapter01/knock01.py)
 $ git commit -m 'your message'
-$ git push origin main
+$ git pull origin main
+$ git push origin <b_name>
 ```
 
 ## Notes
