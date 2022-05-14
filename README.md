@@ -21,8 +21,8 @@ $ git branch <user_name> (e.g. git branch kazuma)
 $ git checkout <user_name>
 $ git add <任意のファイル> (e.g. git add ./kazuma/chapter01/knock01.py)
 $ git commit -m 'your message'
-$ git pull
-$ git push origin main
+$ git pull origin main
+$ git push origin <user_name>
 ```
 ## 注意事項
 
