@@ -17,12 +17,12 @@ $ git clone https://github.com/tmu-nlp/100knock2022.git
 コードを書いたら remote repository に push してください。
 チャプター名、ファイル名はすべて二桁の数字にしてください（例: `chapter01`, `knock00.py`）。
 ```
-$ git branch <user_name> (e.g. git branch kazuma)
-$ git checkout <user_name>
+$ git branch <任意のブランチ名(以下、b_name)> (e.g. git branch kazuma)
+$ git checkout <b_name>
 $ git add <任意のファイル> (e.g. git add ./kazuma/chapter01/knock01.py)
 $ git commit -m 'your message'
 $ git pull origin main
-$ git push origin <user_name>
+$ git push origin <b_name>
 ```
 ## 注意事項
 
