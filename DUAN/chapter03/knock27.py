@@ -13,6 +13,6 @@ for t in an[0].split('\n'): # 要素を改行文字で区切る
     if re.search('\|(.+?)\s=\s*(.+)', t): 
         tem = re.search('\|(.+?)\s*=\s*(.+)', t)
         d[tem[1]] = tem[2] # キーと値を指定し、dに追加する
-    match = re.sub('\'{2,}(.+?)\'{2,}', '\\1', t) # 文字列置換
+    match = re.sub("\'{2,}(.+?)\'{2,}", '\\1', t) # 文字列置換
     match2 = re.sub('\[\[(.+?)\]\]', '\\1', match)
     print(match2)
