@@ -17,7 +17,7 @@ ans = set()
 for s in sen:
     for morph in s:
         if morph['pos'] == '動詞':
-          ans.add(morph['surface']) # 重複しない要素のみ保持する
+            ans.add(morph['surface']) # 重複しない要素のみ保持する
 
 for verb in list(ans):
     print(verb)
