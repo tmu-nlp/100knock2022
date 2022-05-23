@@ -2,8 +2,9 @@ name: Update-Progress
 
 on:
   push:
-    branches-ignore:
-      - 'ch**'
+    branches:
+      - 'main'
+      - 'master'
 
   workflow_dispatch:
     inputs:
