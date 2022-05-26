@@ -1,3 +1,6 @@
 a = 'パタトクカシーー'
-b = a[0]+a[2]+a[4]+a[6]
-print (b)
+b = []
+for i in range(len(a)):
+    if i%2 == 0:
+        b.append(a[i])
+print (''.join(b))

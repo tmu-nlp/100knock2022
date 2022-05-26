@@ -6,7 +6,6 @@
 
 import random
 
-
 #line = "I couldn’t believe that I could actually understand what I was reading : the phenomenal power of the human mind ."
 line = input()
 word_list = line.split()#単語は空白区切りでリストに格納
