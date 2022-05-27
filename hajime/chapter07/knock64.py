@@ -14,3 +14,14 @@ with open("64.txt", "w") as o_file:
                 positive=[words[1], words[2]], negative=[words[0]])[0]
             o_file.write(
                 f"{words[0]} {words[1]} {words[2]} {words[3]} {key} {value}\n")
+
+# 8869までが意味的アナロジー
+# 8870以降が文法的アナロジー
+with open("64.txt", "r") as f:
+    with open("64-semantic.txt", 'w') as o_file1:
+        with open("64-syntactic.txt", 'w') as o_file2:
+            for i, line in enumerate(f):
+                if i < 8869:
+                    o_file1.write(line)
+                else:
+                    o_file2.write(line)
