@@ -18,9 +18,9 @@ for sentence in sentences:
                     flag2 = True
                 if morph.pos != '記号':
                     modifiee.append(morph.surface)
-        if flag1 and flag2:
-            print(''.join(modifier), ''.join(modifiee), sep='\t')
-        flag1 = False
-        flag2 = False
-        modifier.clear()
-        modifiee.clear()
+            if flag1 and flag2:
+                print(''.join(modifier), ''.join(modifiee), sep='\t')
+            flag1 = False
+            flag2 = False
+            modifier.clear()
+            modifiee.clear()

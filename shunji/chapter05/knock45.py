@@ -19,7 +19,7 @@ for sentence in sentences:
                         flag2 = True
                         cases.append(morph.surface)
         if flag1 and flag2:
-            print(verb, *cases, sep='\t')
+            print(verb, ' '.join(cases), sep='\t')
         flag1 = False
         flag2 = False
         verb = ''

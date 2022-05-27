@@ -24,5 +24,4 @@ for sentence in sentences:
                 sentence_path = [''.join([m.surface if m.pos != '記号' else '' for m in chunk.morphs])] \
                     + create_path(chunk, sentence, [])
                 print(*sentence_path, sep=' -> ')
-                sentence_path = []
                 break  # 同チャンク内に連結名詞がある場合，同じパスが表示される問題の回避
