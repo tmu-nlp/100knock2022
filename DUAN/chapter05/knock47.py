@@ -55,11 +55,10 @@ with open('./100knock2022/DUAN/chapter05/knock47.txt', mode='w') as f:
                 continue
             src_chunks = [chunks[i] for i in chunk.srcs]
             if '動詞' in [morph.pos for morph in chunk.morphs]:
-                    
+                    # 動詞の基本形
                     verb = [morph.base for morph in chunk.morphs if morph.pos == '動詞'][0]
                     pp_term = []
                     sahen_term = None
-
                     #「サ変接続名詞+を（助詞）」で構成された文節が、動詞に係っていれば、「サ変接続名詞+を+動詞の基本形」の形で保存する。
                     for chunk in src_chunks[::-1]:
                         for i, morph in enumerate(chunk.morphs[::-1]):
