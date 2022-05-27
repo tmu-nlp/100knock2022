@@ -1,4 +1,3 @@
-from unittest import case
 from knock41 import sentences
 
 flag1 = False  # 動詞が見つかったらTrue
@@ -13,6 +12,7 @@ for sentence in sentences:
                 if morph.pos == '動詞':
                     flag1 = True
                     verb = morph.base
+                    break # 最左動詞をとるため
             for s in chunk.srcs:
                 for morph in sentence.chunks[s].morphs:
                     if morph.pos == '助詞':
