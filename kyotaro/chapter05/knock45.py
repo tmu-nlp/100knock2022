@@ -1,74 +1,36 @@
-"""問題文長いので省略"""
+"""
+今回用いている文章をコーパスと見なし，日本語の述語が取りうる格を調査したい． 
+動詞を述語，動詞に係っている文節の助詞を格と考え，述語と格をタブ区切り形式で出力せよ． 
+"""
 
 import sys
-import re
-from collections import defaultdict
+from common import Morph
+from common import Chunk
+from common import Sentence
+from common import set_matrioshk
 
-class Morph:
-    def __init__(self, data):
-        morph = data.replace("\t", ",").split(",")
-        self.surface = morph[0]
-        self.base = morph[7]
-        self.pos = morph[1]
-        self.pos1 = morph[2]
-
-class Chunk:
-    def __init__(self, morphs, dst):
-        self.morphs = morphs
-        self.dst = dst
-        self.srcs = []
-    
-class Sentence:
-    def __init__(self, chunks):
-        self.chunks = chunks
-        for i, chunk in enumerate(self.chunks):
-            if chunk.dst != -1:
-                self.chunks[chunk.dst].srcs.append(i)
-
-
-
-sentences = []
-chunks = []
-morphs = []
-
-with open(sys.argv[1], "r") as data:
-    for line in data:
-        if line[0] == "*":
-            line = line.strip()
-            if len(morphs) > 0:
-                chunks.append(Chunk(morphs, dst))
-                morphs = []
-            dst = int(re.search(r'(.*?)D', line.split()[2]).group(1))
-
-        elif line != "EOS\n":  # EOSが出ない場合
-            morphs.append(Morph(line))
-
-        else:
-            if len(morphs) > 0:
-                chunks.append(Chunk(morphs, dst))
-                sentences.append(Sentence(chunks))
-                morphs = []
-                chunks = []
-                dst = None
-
-ans = defaultdict(lambda: 0)
+file_name = sys.argv[1]
+sentences, chunks, morphs = set_matrioshk(file_name)
     
 for sentence in sentences:
     for chunk in sentence.chunks:
-        modifer = list()
-        modifee = list()
         for morph in chunk.morphs:
             if morph.pos == "動詞":
-                modifer.append(morph.base)
-        
-        for morph in sentence.chunks[int(chunk.dst)].morphs:
-                if morph.pos == "助詞":
-                    modifee.append(morph.surface)
-        
-        if modifer and modifee:
-            fer = "".join(modifer)
-            fee = "".join(modifee)
-            ans[f'{fer} {fee}'] += 1
+                mod = []  # 動詞が出てきたらリストの用意
+                mod.append(morph.base)  # 動詞をリストに格納する
+                for i in chunk.srcs:
+                    for morph in sentence.chunks[i].morphs:  # 見る形態素を係り元の方に変更
+                        if morph.pos == "助詞":
+                            mod.append(morph.surface)  # 係り元に助詞が含まれるならその助詞をリストに追加
+                if mod:
+                    modifee = " ".join(mod[1::])  # 係り元をスペース区切りで連結
+                    print(mod[0] + "\t" + modifee)  # 動詞の部分 mod[0] と係り元の modifee をタブ区切りで連結
+                    break  # 左端の部分だけで実行
 
-for key, value in sorted(ans.items(), key = lambda x:x[1], reverse = True):
-    print(key + "\t" + str(value))
+
+"""
+cat 45.txt | sort | uniq -c | sort -nr | head -10
+cat 45.txt | grep "行う" | sort | uniq -c | sort -nr | head -10
+cat 45.txt | grep "なる" | sort | uniq -c | sort -nr | head -10
+cat 45.txt | grep "与える" | sort | uniq -c | sort -nr | head -10
+"""

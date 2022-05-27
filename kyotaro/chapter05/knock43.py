@@ -3,73 +3,32 @@
 """
 
 import sys
-import re
-from collections import defaultdict
 
-class Morph:
-    def __init__(self, data):
-        morph = data.replace("\t", ",").split(",")
-        self.surface = morph[0]
-        self.base = morph[7]
-        self.pos = morph[1]
-        self.pos1 = morph[2]
+from common import Morph
+from common import Chunk
+from common import Sentence
+from common import set_matrioshk
 
-class Chunk:
-    def __init__(self, morphs, dst):
-        self.morphs = morphs
-        self.dst = dst
-        self.srcs = []
-    
-class Sentence:
-    def __init__(self, chunks):
-        self.chunks = chunks
-        for i, chunk in enumerate(self.chunks):
-            if chunk.dst != -1:
-                self.chunks[chunk.dst].srcs.append(i)
-
-
-
-sentences = []
-chunks = []
-morphs = []
-
-with open(sys.argv[1], "r") as data:
-    for line in data:
-        if line[0] == "*":
-            line = line.strip()
-            if len(morphs) > 0:
-                chunks.append(Chunk(morphs, dst))
-                morphs = []
-            dst = int(re.search(r'(.*?)D', line.split()[2]).group(1))
-
-        elif line != "EOS\n":  # EOSが出ない場合
-            morphs.append(Morph(line))
-
-        else:
-            if len(morphs) > 0:
-                chunks.append(Chunk(morphs, dst))
-                sentences.append(Sentence(chunks))
-                morphs = []
-                chunks = []
-                dst = None
+file_name = sys.argv[1]
+sentences, chunks, morphs = set_matrioshk(file_name)
     
 for chunk in sentences[1].chunks:
     if chunk.dst != -1:
-        modifer = list()
-        modifer_pos = list()
-        modifee = list()
-        modifee_pos = list()
+        modifer = list()  # 係り元のChunk用
+        modifer_pos = list()  # 係り元の各Morphの品詞を格納
+        modifee = list()  # 係り先の各Morphのsurface
+        modifee_pos = list()  # 係り先の各Morphの品詞を格納
         for morph in chunk.morphs:
-            if morph.pos != "記号":
-                modifer_pos.append(morph.pos)
-                if "名詞" in modifer_pos:
-                    modifer.append(morph.surface)
+            if morph.pos != "記号": 
+                modifer_pos.append(morph.pos)  # 係り元の品詞を格納
+                if "名詞" in modifer_pos:  # 名詞を含むか判別
+                    modifer.append(morph.surface)  # 名詞を含んでいれば係り元のChunkに格納
         
-        for morph in sentences[1].chunks[int(chunk.src)].morphs:
+        for morph in sentences[1].chunks[int(chunk.dst)].morphs:
             if morph.pos != "記号":
-                modifee_pos.append(morph.pos)
-                if "動詞" in modifee_pos:
-                    modifee.append(morph.surface)
+                modifee_pos.append(morph.pos)  # 係り先の品詞を格納
+                if "動詞" in modifee_pos:  # 動詞を含むか判別
+                    modifee.append(morph.surface)  # 動詞を含んでいれば係り先のChunkに格納
         
-        if modifer and modifee:
+        if modifer and modifee:  # 両方が存在していれば出力
             print("".join(modifer) + "\t" + "".join(modifee))
