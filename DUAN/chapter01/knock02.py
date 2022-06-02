@@ -1,4 +1,8 @@
-a='パトカー'
-b='タクシー'
-c=a[0]+b[0]+a[1]+b[1]+a[2]+b[2]+a[3]+b[3]
-print (c)
+a = 'パトカー'
+b = 'タクシー'
+c = []; i = 0
+for i in range(len(a)):
+    if i < 4:
+        c.append(a[i]+b[i])
+        i += 1
+print(''.join(c))

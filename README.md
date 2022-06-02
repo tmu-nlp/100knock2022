@@ -17,14 +17,15 @@ $ git clone https://github.com/tmu-nlp/100knock2022.git
 コードを書いたら remote repository に push してください。
 チャプター名、ファイル名はすべて二桁の数字にしてください（例: `chapter01`, `knock00.py`）。
 ```
-$ git pull
-$ git add ./<user_name>/chapter##/knockXX.py
+$ git branch <任意のブランチ名(以下、b_name)> (e.g. git branch kazuma)
+$ git checkout <b_name>
+$ git add <任意のファイル・フォルダ> (e.g. git add ./kazuma/chapter01/knock01.py)
 $ git commit -m 'your message'
-$ git push origin main
+$ git pull origin main
+$ git push origin <b_name>
 ```
-
 ## 注意事項
-
+test
 新入生はできるだけ Python3 系で書いてください。
 わからないところは**積極的**に TA か研究室の人に聞いてください。
 **他の人のディレクトリを変更することは絶対にやめてください。**
@@ -49,10 +50,12 @@ $ git clone https://github.com/tmu-nlp/100knock.git
 
 "##" and "XX" mean "two-digit question number". (e.g. `chapter01`, `knock00.py`)
 ```
-$ git pull
-$ git add ./<user_name>/chapter##/knockXX.py
+$ git branch <any branch name(b_name)> (e.g. git branch kazuma)
+$ git checkout <b_name>
+$ git add <any file or folder> (e.g. git add ./kazuma/chapter01/knock01.py)
 $ git commit -m 'your message'
-$ git push origin main
+$ git pull origin main
+$ git push origin <b_name>
 ```
 
 ## Notes
