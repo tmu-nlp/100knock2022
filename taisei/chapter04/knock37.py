@@ -28,4 +28,4 @@ plt.bar(word_list, count_list.astype(np.int64)) #頻度の方はint型に変換
 plt.xlabel("単語")
 plt.ylabel("出現回数")
 plt.title("猫との共起頻度トップ10の単語")
-plt.savefig("knock37_output")
+plt.savefig("./output/knock37_output")
