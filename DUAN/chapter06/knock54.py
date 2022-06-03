@@ -7,7 +7,7 @@ import numpy as np
 import string
 import re
 
-def score_lg(lg, x):
+def score_lg(lg, x): # カテゴリのラベルを予測して、各カテゴリの予測確率を求める
   return [np.max(lg.predict_proba(x), axis=1), lg.predict(x)]
 
 def pre(text): # 前処理
@@ -30,7 +30,7 @@ test.to_csv('./100knock2022/DUAN/chapter06/test.txt', sep='\t', index=False)
 df = pd.concat([train, valid, test], axis=0)
 df.reset_index(drop=True, inplace=True) 
 df['TITLE'] = df['TITLE'].map(lambda x: pre(x))
-
+# データの分割
 train_valid = df[:len(train) + len(valid)]
 test = df[len(train) + len(valid):]
 # TF-IDFで特徴量を抽出する
@@ -55,11 +55,12 @@ lg.fit(X_train, train['CATEGORY'])
 train_pred = score_lg(lg, X_train)
 test_pred = score_lg(lg, X_test)
 
-# 正解率を学習データと評価データ上で計算する
+# accuracy_score()関数を使用し、正解率を学習データと評価データ上で計算する
+# 第一引数にラベルを指定し、第二引数にモデルの予測結果を指定する
 train_accuracy = accuracy_score(train['CATEGORY'], train_pred[1])
 test_accuracy = accuracy_score(test['CATEGORY'], test_pred[1])
 print(f'正解率（学習データ）：{train_accuracy:.6f}')
 print(f'正解率（評価データ）：{test_accuracy:.6f}')
 
-# 正解率（学習データ）：0.923
-# 正解率（評価データ）：0.886
+# 正解率（学習データ）：0.923257
+# 正解率（評価データ）：0.886057
