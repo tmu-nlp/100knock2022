@@ -5,7 +5,7 @@ def remove_markup(text):
     pattern = r'\'{2,5}'
     text = re.sub(pattern, '', text)
 
-    pattern = r'\[\[(?:[^|]*?\|)??([^|]*?)\]\]'
+    pattern = r'\[\[(?:[^|]*?\|)*?([^|]*?)*?\]\]'
     text = re.sub(pattern, r'\1', text)
 
     return text
