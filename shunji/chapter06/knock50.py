@@ -42,6 +42,7 @@ df = df.loc[
 train, valid_test = train_test_split(
     df,
     train_size=0.8,
+    random_state=1,
     shuffle=True,
     stratify=df["CATEGORY"],  # stratifyはカテゴリの割合が各データで等しくなるように
 )
@@ -49,6 +50,7 @@ train, valid_test = train_test_split(
 valid, test = train_test_split(
     valid_test,
     test_size=0.5,
+    random_state=1,
     shuffle=True,
     stratify=valid_test["CATEGORY"],
 )
