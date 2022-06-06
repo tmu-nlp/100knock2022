@@ -23,4 +23,4 @@ plt.bar(word_list, count_list.astype(np.int64)) #頻度の方はint型に変換
 plt.xlabel("単語")
 plt.ylabel("出現回数")
 plt.title("出現回数トップ10の単語")
-plt.savefig("knock36_output")
+plt.savefig("./output/knock36_output")

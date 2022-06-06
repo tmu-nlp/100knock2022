@@ -17,8 +17,13 @@ count_dict_sort = sorted(count_dict.items(), key=lambda x:x[1], reverse=True)
 count_np_sort = np.array(count_dict_sort)
 frec_list = count_np_sort[:, 1] #各単語の出現頻度だけ抽出
 
-plt.hist(frec_list.astype(np.int64), bins=100) #int化
+plt.hist(frec_list.astype(np.int64), range=(1,max(frec_list.astype(np.int64)))) #int化
+"""
+numpy使わなくても下のでも抽出できる
+hoge, frec_list = zip(*count_dict_sort)
+plt.hist(frec_list, range=(1,max(frec_list)))
+"""
 plt.xlabel("出現頻度")
 plt.ylabel("単語の異なり数")
 plt.title("単語の出現頻度分布")
-plt.savefig("knock38_output")
+plt.savefig("./output/knock38_output")
