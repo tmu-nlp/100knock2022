@@ -17,36 +17,38 @@ valid_feture = pd.read_table("valid.feture.txt")
 test_feture = pd.read_table("test.feture.txt")
 
 # kernelの設定のリスト
-kernel_names= ['linear','rbf','poly','sigmoid']
+kernel_names = ['linear', 'rbf', 'poly', 'sigmoid']
 
-# SVM
-svm = SVC(C=1.0, kernel="linear", gamma=0.01, max_iter=1000)
-svm.fit(X_train, train["CATEGORY"])
+for kernel in kernel_names:
+    # SVM
+    svm = SVC(C=1.0, kernel=kernel, gamma=0.01, max_iter=1000)
+    svm.fit(X_train, train["CATEGORY"])
 
-# 予測確率
-train_predict_svm = score_lr(svm, train_feture)
-valid_predict_svm = score_lr(svm, valid_feture)
-test_predict_svm = score_lr(svm, test_feture)
+    # 予測確率
+    train_predict_svm = score_lr(svm, train_feture)
+    valid_predict_svm = score_lr(svm, valid_feture)
+    test_predict_svm = score_lr(svm, test_feture)
 
-# 正解のタグ
-train_ans = pd.read_csv("train.txt", sep="\t")["CATEGORY"]
-valid_ans = pd.read_csv("valid.txt", sep="\t")["CATEGORY"]
-test_ans = pd.read_csv("test.txt", sep="\t")["CATEGORY"]
+    # 正解のタグ
+    train_ans = pd.read_csv("train.txt", sep="\t")["CATEGORY"]
+    valid_ans = pd.read_csv("valid.txt", sep="\t")["CATEGORY"]
+    test_ans = pd.read_csv("test.txt", sep="\t")["CATEGORY"]
 
-# 自分で予測したタグ
-train_myans_svm = train_predict_svm[1]
-valid_myans_svm = valid_predict_svm[1]
-test_myans_svm = test_predict_svm[1]
+    # 自分で予測したタグ
+    train_myans_svm = train_predict_svm[1]
+    valid_myans_svm = valid_predict_svm[1]
+    test_myans_svm = test_predict_svm[1]
 
-# 正解率の計算
-train_accuracy_svm = accuracy_score(train_ans, train_myans_svm)
-valid_accuracy_svm = accuracy_score(valid_ans, valid_myans_svm)
-test_accuracy_svm = accuracy_score(test_ans, test_myans_svm)
+    # 正解率の計算
+    train_accuracy_svm = accuracy_score(train_ans, train_myans_svm)
+    valid_accuracy_svm = accuracy_score(valid_ans, valid_myans_svm)
+    test_accuracy_svm = accuracy_score(test_ans, test_myans_svm)
 
-# 出力
-print(f'train accuracy = {train_accuracy_svm}%')
-print(f'valid accuracy = {valid_accuracy_svm}%')
-print(f'test accuracy = {test_accuracy_svm}%')
+    # 出力
+    print(kernel)
+    print(f'train accuracy = {train_accuracy_svm}%')
+    print(f'valid accuracy = {valid_accuracy_svm}%')
+    print(f'test accuracy = {test_accuracy_svm}%')
 
 
 """
