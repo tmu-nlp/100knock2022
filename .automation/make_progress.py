@@ -66,9 +66,9 @@ def plot_progress(users: np.array, scores: np.array):
     date_list.append(datetime.date(2022, 5, 27))
     date_list.append(datetime.date(2022, 6, 3))
     date_list.append(datetime.date(2022, 6, 10))
-    date_list.append(datetime.date(2022, 6, 17))
     date_list.append(datetime.date(2022, 6, 24))
-    date_list.append(datetime.date(2022, 7, 1))
+    date_list.append(datetime.date(2022, 7, 8))
+    date_list.append(datetime.date(2022, 7, 22))
 
     d = [date for date in date_list if today >= date]
     xmin, xmax = plt.xlim()

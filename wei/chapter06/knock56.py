@@ -7,7 +7,7 @@ document:
 https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_recall_fscore_support.html#sklearn.metrics.precision_recall_fscore_support
 '''
 
-from sklearn.metrics import precision_recall_fscore_support
+from sklearn.metrics import classification_report
 import pandas as pd
 import numpy as np
 from knock53 import *
@@ -27,20 +27,30 @@ if __name__ == '__main__':
     train_pred = cal_score(LogRe_train, X_train)
     test_pred = cal_score(LogRe_test, X_test)
 
-    train_metrics = precision_recall_fscore_support(train_re['CATEGORY'], train_pred[1],
-                                          average=None, labels=['b', 'e', 't', 'm'])[:3]
-    test_metrics = precision_recall_fscore_support(test_re['CATEGORY'], test_pred[1],
-                                          average=None, labels=['b', 'e', 't', 'm'])[:3]
+    #print(classification_report(train_re['CATEGORY'], train_pred[1]))
+    '''
+                  precision    recall  f1-score   support
 
+           b       0.94      0.97      0.96      4502
+           e       0.94      0.99      0.96      4223
+           m       0.98      0.72      0.83       728
+           t       0.94      0.76      0.84      1219
 
+    accuracy                           0.94     10672
+   macro avg       0.95      0.86      0.90     10672
+weighted avg       0.94      0.94      0.94     10672'''
+    print(classification_report(test_re['CATEGORY'], test_pred[1]))
+    '''
+                  precision    recall  f1-score   support
 
-    train_micro = precision_recall_fscore_support(train_re['CATEGORY'], train_pred[1], average='micro', labels=['b', 'e', 't', 'm'])[:3]
-    test_micro = precision_recall_fscore_support(test_re['CATEGORY'], test_pred[1], average='micro',
-                                                  labels=['b', 'e', 't', 'm'])[:3]
+           b       0.88      0.95      0.91       563
+           e       0.85      0.98      0.91       528
+           m       1.00      0.44      0.61        91
+           t       0.96      0.51      0.66       152
 
-    print(train_metrics)
-    #print(train_res)
-
+    accuracy                           0.88      1334
+   macro avg       0.92      0.72      0.77      1334
+weighted avg       0.89      0.88      0.86      1334'''
 
 
 
