@@ -95,7 +95,7 @@ def train_model(dataset_train, dataset_valid, batch_size, model, criterion, opti
         log_valid.append([loss_valid, acc_valid])
         torch.save({'epoch': epoch, 'model_state_dict': model.state_dict(), 'optimizer_state_dict': optimizer.state_dict()}, f'checkpoint{epoch + 1}.pt')          
         e_time = time.time()
-    print(f'epoch: {epoch + 1}, loss_train: {loss_train:.4f}, accuracy_train: {acc_train:.4f}, loss_valid: {loss_valid:.4f}, accuracy_valid: {acc_valid:.4f}, {(e_time - s_time):.4f}sec') 
+    print(f'loss_train: {loss_train:.4f}, accuracy_train: {acc_train:.4f}, loss_valid: {loss_valid:.4f}, accuracy_valid: {acc_valid:.4f}, {(e_time - s_time):.4f}sec') 
     return {'train': log_train, 'valid': log_valid}
 
 for batch_size in [2 ** i for i in range(11)]:
