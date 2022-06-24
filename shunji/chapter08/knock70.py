@@ -11,7 +11,7 @@ def transform_w2v(text):
         model[word] for word in words if word in model
     ]  # 1語ずつベクトル化(type: list of ndarray)
 
-    return torch.tensor(sum(vec) / len(vec))  # 平均ベクトルをTensor型で返す
+    return torch.from_numpy(sum(vec) / len(vec))  # 平均ベクトルをTensor型で返す
 
 
 # モデルと学習，検証，評価データの読み込み
@@ -21,7 +21,7 @@ valid = pd.read_csv("valid.txt", sep="\t")
 test = pd.read_csv("test.txt", sep="\t")
 
 # 特徴ベクトルの作成
-# 次元数：1*300 -> 1*300*データ数
+# 次元数：300*1 -> データ数*300*1
 X_train = torch.stack([transform_w2v(text) for text in train["TITLE"]])
 X_valid = torch.stack([transform_w2v(text) for text in valid["TITLE"]])
 X_test = torch.stack([transform_w2v(text) for text in test["TITLE"]])
