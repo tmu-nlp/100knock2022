@@ -147,7 +147,7 @@ device = torch.device("cuda")  # deviceを指定
 for batch_size in [2 ** i for i in range(12)]:
     print(f"batch_size : {batch_size}")
     train_model(dataset_train, dataset_valid,
-                batch_size, model, criterion, num_epochs)
+                batch_size, model, criterion, num_epochs, device)
 """
 batch_size : 1
 epoch: 1, loss_train: 0.3296, accuracy_train: 0.8864, loss_valid: 0.3435, accuracy_valid: 0.8832, train_time: 6.0722sec
