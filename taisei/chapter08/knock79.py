@@ -51,11 +51,11 @@ for batch in [128]:
     accs_train = []
     accs_valid = []
     times = []
-    for i in tqdm(range(10)):
+    for i in tqdm(range(100)):
         train_dataloader = torch.utils.data.DataLoader(train_data, batch_size=batch, shuffle=True)
         start = time.time()
         sum_loss_train = 0
-        for batch_x, batch_y in train_data:
+        for batch_x, batch_y in train_dataloader:
             Y_pred_train = net(batch_x)
             loss_train = loss_f(Y_pred_train, batch_y)
             optimizer.zero_grad() #パラメータの勾配をリセット
@@ -63,7 +63,7 @@ for batch in [128]:
             optimizer.step() #各パラメータの勾配を使用してパラメータの値を調整
             sum_loss_train += loss_train.detach().numpy()
 
-        losses_train.append(sum_loss_train/len(train_data))
+        losses_train.append(sum_loss_train/len(train_dataloader))
 
         Y_pred_valid = net(X_valid_tenso)
         loss_valid = loss_f(Y_pred_valid, Y_valid_tenso)

@@ -42,11 +42,11 @@ for batch in [2 ** i for i in range(6, 11)]:
     accs_train = []
     accs_valid = []
     times = []
-    for i in tqdm(range(10)):
+    for i in tqdm(range(100)):
         train_dataloader = torch.utils.data.DataLoader(train_data, batch_size=batch, shuffle=True)
         start = time.time()
         sum_loss_train = 0
-        for batch_x, batch_y in train_data:
+        for batch_x, batch_y in train_dataloader:
             Y_pred_train = net(batch_x)
             loss_train = loss_f(Y_pred_train, batch_y)
             optimizer.zero_grad() #パラメータの勾配をリセット
