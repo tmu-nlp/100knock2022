@@ -37,8 +37,6 @@ def plot_result(log_train, log_valid, file_name):
     plt.savefig(file_name)
 
 
-
-
 model = NeuralNetwork(300, 4)
 
 loss_fn = nn.CrossEntropyLoss()
