@@ -1,5 +1,4 @@
 a = open('./100knock2022/DUAN/chapter02/popular-names.txt').readlines()
-print(a)
 b1 = open('./100knock2022/DUAN/chapter02/col1.txt','w')
 b2 = open('./100knock2022/DUAN/chapter02/col2.txt','w')
 for moji in a:
