@@ -9,48 +9,44 @@ https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_reca
 
 from sklearn.metrics import classification_report
 import pandas as pd
-import numpy as np
 from knock53 import *
 
 
 
 if __name__ == '__main__':
+    X_train = pd.read_table('./X_train_features.txt')
+    X_test = pd.read_table('./X_test_features.txt')
     train_re = pd.read_table('./train_re.txt', names=['CATEGORY', 'TITLE'])
-    valid_re = pd.read_table('./valid_re.txt', names=['CATEGORY', 'TITLE'])
     test_re = pd.read_table('./test_re.txt', names=['CATEGORY', 'TITLE'])
-    X_train = get_features(train_re, valid_re, test_re)[0]
-    X_test = get_features(test_re, valid_re, test_re)[2]
+    LogRe = LogRe(X_train, train_re['CATEGORY'], )
 
-    LogRe_train = LogRe(X_train, train_re)
-    LogRe_test = LogRe(X_test, test_re)
+    train_pred = cal_score(LogRe, X_train)
+    test_pred = cal_score(LogRe, X_test)
 
-    train_pred = cal_score(LogRe_train, X_train)
-    test_pred = cal_score(LogRe_test, X_test)
-
-    #print(classification_report(train_re['CATEGORY'], train_pred[1]))
+    print(classification_report(train_re['CATEGORY'], train_pred[1]))
     '''
                   precision    recall  f1-score   support
 
-           b       0.94      0.97      0.96      4502
-           e       0.94      0.99      0.96      4223
-           m       0.98      0.72      0.83       728
-           t       0.94      0.76      0.84      1219
+           b       0.93      0.96      0.94      4502
+           e       0.92      0.98      0.95      4223
+           m       0.97      0.70      0.81       728
+           t       0.91      0.72      0.80      1219
 
-    accuracy                           0.94     10672
-   macro avg       0.95      0.86      0.90     10672
-weighted avg       0.94      0.94      0.94     10672'''
+    accuracy                           0.92     10672
+   macro avg       0.93      0.84      0.88     10672
+weighted avg       0.92      0.92      0.92     10672'''
     print(classification_report(test_re['CATEGORY'], test_pred[1]))
     '''
-                  precision    recall  f1-score   support
+              precision    recall  f1-score   support
 
-           b       0.88      0.95      0.91       563
-           e       0.85      0.98      0.91       528
-           m       1.00      0.44      0.61        91
-           t       0.96      0.51      0.66       152
+           b       0.88      0.92      0.90       563
+           e       0.86      0.96      0.91       528
+           m       0.87      0.49      0.63        91
+           t       0.86      0.57      0.69       152
 
-    accuracy                           0.88      1334
-   macro avg       0.92      0.72      0.77      1334
-weighted avg       0.89      0.88      0.86      1334'''
+    accuracy                           0.87      1334
+   macro avg       0.87      0.74      0.78      1334
+weighted avg       0.87      0.87      0.86      1334'''
 
 
 

@@ -10,6 +10,9 @@ from knock52 import X_train, train
 from knock53 import score_lr
 import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
+
+
 
 # テストデータと訓練データの特徴量を取得
 train_feture = pd.read_table("train.feture.txt")

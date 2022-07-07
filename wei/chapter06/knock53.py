@@ -8,11 +8,10 @@ predict(X): predict class labels for samples in X
 predict_proba(X): probability estimates
 '''
 
-
-import pandas as pd
-from knock51 import get_features
-from knock52 import LogRe
 import numpy as np
+import pandas as pd
+from knock52 import *
+
 
 def cal_score(lgr, X):
     # [max prob per sample, pred_label]
@@ -20,20 +19,21 @@ def cal_score(lgr, X):
 
 
 if __name__ == '__main__':
+    X_train = pd.read_table('./X_train_features.txt')
+    X_test = pd.read_table('./X_test_features.txt')
     train_re = pd.read_table('./train_re.txt', names=['CATEGORY', 'TITLE'])
-    valid_re = pd.read_table('./valid_re.txt', names=['CATEGORY', 'TITLE'])
-    test_re = pd.read_table('./test_re.txt', names=['CATEGORY', 'TITLE'])
-    X_train = get_features(train_re, valid_re, test_re)[0]
-    X_test = get_features(test_re, valid_re, test_re)[2]
+    LogRe = LogRe(X_train, train_re['CATEGORY'])
 
-    LogRe_train = LogRe(X_train, train_re)
-    LogRe_test = LogRe(X_test, test_re)
+    train_pred = cal_score(LogRe, X_train)
+    test_pred = cal_score(LogRe, X_test)
 
-    train_pred = cal_score(LogRe_train, X_train)
-    test_pred = cal_score(LogRe_test, X_test)
+    print(f'pred proba on train:{train_pred}')
+    print(f'pred proba on test:{test_pred}')
 
-    print(train_pred)
-
-
+'''
+pred proba on train:[array([0.68265556, 0.7315841 , 0.8333757 , ..., 0.77320911, 0.88480182,
+       0.90610809]), array(['e', 'b', 'e', ..., 'e', 'e', 'b'], dtype=object)]
+pred proba on test:[array([0.6061314 , 0.50418264, 0.72998405, ..., 0.60211282, 0.88243351,
+       0.9778531 ]), array(['e', 'e', 'b', ..., 'e', 'e', 'b'], dtype=object)]'''
 
 

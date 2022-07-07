@@ -14,17 +14,15 @@ from knock53 import *
 
 
 if __name__ == '__main__':
+    X_train = pd.read_table('./X_train_features.txt')
+    X_test = pd.read_table('./X_test_features.txt')
     train_re = pd.read_table('./train_re.txt', names=['CATEGORY', 'TITLE'])
-    valid_re = pd.read_table('./valid_re.txt', names=['CATEGORY', 'TITLE'])
     test_re = pd.read_table('./test_re.txt', names=['CATEGORY', 'TITLE'])
-    X_train = get_features(train_re, valid_re, test_re)[0]
-    X_test = get_features(test_re, valid_re, test_re)[2]
+    LogRe = LogRe(X_train, train_re['CATEGORY'], )
 
-    LogRe_train = LogRe(X_train, train_re)
-    LogRe_test = LogRe(X_test, test_re)
+    train_pred = cal_score(LogRe, X_train)
+    test_pred = cal_score(LogRe, X_test)
 
-    train_pred = cal_score(LogRe_train, X_train)
-    test_pred = cal_score(LogRe_test, X_test)
 
 
     print(confusion_matrix(train_re['CATEGORY'], train_pred[1]))
@@ -33,14 +31,14 @@ if __name__ == '__main__':
 
 '''
 confusion matrix of training:
-[[4389   64    5   44]
- [  36 4180    1    6]
- [  80  114  526    8]
- [ 169  112    6  932]]
+[[4329  108    5   60]
+ [  62 4149    2   10]
+ [  82  128  506   12]
+ [ 203  135    8  873]]
  confusion matrix of test:
- [[533  27   0   3]
- [ 10 518   0   0]
- [ 22  29  40   0]
- [ 43  32   0  77]]
+[[519  28   5  11]
+ [ 19 507   0   2]
+ [ 19  26  45   1]
+ [ 35  28   2  87]]
 
 '''

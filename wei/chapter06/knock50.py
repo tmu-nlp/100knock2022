@@ -30,8 +30,8 @@ def get_data(file_path):
 if __name__ == '__main__':
     data_path = '../data/newsCorpora.csv'
     data = get_data(data_path)
-    # データ分割
 
+    # データ分割
     train, val_test = train_test_split(data, test_size=0.2, shuffle=True, random_state=886, stratify=data['CATEGORY'])
     valid, test = train_test_split(val_test, test_size=0.5, shuffle=True, random_state=886, stratify=val_test['CATEGORY'])
 
