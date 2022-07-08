@@ -37,15 +37,13 @@ def plot_result(log_train, log_valid, file_name):
     plt.savefig(file_name)
 
 
-
-
 model = NeuralNetwork(300, 4)
 
 loss_fn = nn.CrossEntropyLoss()
 
-oprimizer = torch.optim.SGD(model.parameters(), lr = 1e-1)
+oprimizer = torch.optim.SGD(model.parameters(), lr = 1e-3)
 
-num_epochs = 30
+num_epochs = 100
 log_train = []
 log_valid = []
 
