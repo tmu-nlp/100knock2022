@@ -218,7 +218,7 @@ print(f'正解率（学習データ）：{acc_train:.3f}')
 print(f'正解率（評価データ）：{acc_test:.3f}')
 
 '''
-poch: 1, loss_train: 1.1165, accuracy_train: 0.5238, loss_valid: 1.1179, accuracy_valid: 0.5217, 44.8156sec
+epoch: 1, loss_train: 1.1165, accuracy_train: 0.5238, loss_valid: 1.1179, accuracy_valid: 0.5217, 44.8156sec
 epoch: 2, loss_train: 1.0646, accuracy_train: 0.5963, loss_valid: 1.0735, accuracy_valid: 0.5682, 40.6319sec
 epoch: 3, loss_train: 1.0104, accuracy_train: 0.6212, loss_valid: 1.0300, accuracy_valid: 0.5952, 35.5207sec
 epoch: 4, loss_train: 0.9529, accuracy_train: 0.6596, loss_valid: 0.9836, accuracy_valid: 0.6199, 35.0890sec
