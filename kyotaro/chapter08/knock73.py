@@ -6,6 +6,7 @@ import torch
 from torch import nn
 from torch.utils.data import Dataset, DataLoader
 from knock71 import NeuralNetwork
+import pickle
 
 class NewsDataset(Dataset):
     """Datasetクラスの作成"""
@@ -48,6 +49,7 @@ def calculate_SGD(model, loss_fn, optimizer, epochs):
             inputs, labels = next(iter(valid_dataloader))
             outputs = model(inputs)
             loss_valid = loss_fn(outputs, labels) 
+        torch.save(model, "model.pt")
         
         # print(f'epoch : {epoch + 1}, loss_train : {loss_train}, loss_valid : {loss_valid}')
 
@@ -76,9 +78,9 @@ model = NeuralNetwork(300, 4)
 # 損失関数
 loss_fn = nn.CrossEntropyLoss()
 # 最適化器
-optimizer = torch.optim.SGD(model.parameters(), lr = 1e-1)
+optimizer = torch.optim.SGD(model.parameters(), lr = 1e-3)
 
-calculate_SGD(model, loss_fn, optimizer, 10)
+calculate_SGD(model, loss_fn, optimizer, 100)
 
 """
 epoch : 1, loss_train : 1.3762803499617602, loss_valid : 1.198346734046936
