@@ -46,4 +46,3 @@ with open('./100knock2022/DUAN/chapter05/ai.ja.txt.parsed') as f_parsed:
         
 for chunk in sentences_chunk[1]:
     print('surface:'+''.join([morph.surface for morph in chunk.morphs]), f'dst: {chunk.dst}, srcs: {chunk.srcs}')
-    
