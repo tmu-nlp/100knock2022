@@ -6,9 +6,10 @@ RNN(x,h)は入力xと次時刻の隠れ状態hから前状態を計算するRNN�
 W^(yh)∈R^{L×2dh}は隠れ状態ベクトルからカテゴリを予測するための行列
 b^{(y)}∈R^{L}はバイアス項である
 biRNNを実験
+https://pytorch.org/docs/stable/generated/torch.nn.RNN.html#torch.nn.RNN
 '''
 from knock80 import *    # made ids for words
-from knock81 import *    # defined the RNN model and Dataset
+from knock81 import *    # defined the RNN model and Dataset, also make ids for word, myDataset and labels' tensor for 4 categories
 from knock82 import cal_loss_acc, train_model
 from knock83 import Padsequence
 import torch
@@ -19,19 +20,23 @@ class biRNN(nn.Module):
     def __init__(self, hidden_size, emb_size, vocab_size, padding_idx, output_size, num_layers, device, emb_weight=None, bidirectional=False):
         super().__init__()
         self.device = device
-        self.hidden_size = hidden_size
+        self.hidden_size = hidden_size    # output_dim
         self.num_layers = num_layers
-        self.num_directions = bidirectional + 1  # to be bidiretional
+        self.num_directions = bidirectional + 1               # to be bidirectional
         if emb_weight != None:
             self.emb = nn.Embedding.from_pretrained(
-                emb_weight, padding_idx=padding_idx)
+                emb_weight, padding_idx=padding_idx
+            )
         else:
             self.emb = nn.Embedding(vocab_size, emb_size, padding_idx=padding_idx)
         self.rnn = nn.RNN(
             emb_size, hidden_size, num_layers=num_layers,
             nonlinearity='tanh', batch_first=True, bidirectional=bidirectional
         )
+        # batch_first: if True, then input and output tensors has shape of (batch_size, seq_len, feature_dim) and does not apply to hidden/cell.
+        #この設定により、複数のRNN_cellをひとまとめにする。
         self.fc = nn.Linear(hidden_size * self.num_directions, output_size)
+        #全結合層で,(input_dim, output_dim)を入れて、tensor of shape (num_inputs, output_dim) を返す
 
     # forward learning
     def forward(self, x):
@@ -41,7 +46,12 @@ class biRNN(nn.Module):
             self.batch_size, self.hidden_size, device=self.device)
         x = self.emb(x)
         y, hidden = self.rnn(x, hidden)
+        # x: 入力で、tensor of shape (batch_size, seq_len, input_dim)
+        # in_hidden: 隠れ層の初期値で、tensor of shape (directs * num_layers, batch_size, hidden_size)
+        # y: 次の層への出力で、tensor of shape (batch_size, seq_len, directs*hidden_size)
+        # out_hidden: 現在の隠れ層の状態で、tensor of shape (directs*num_layers, batch_size, hidden_size)
         y = self.fc(y[:, -1, :])
+        # (batch_size, seq_len, output_dim)を－1で指定し、最後の時刻の出力だけを入れて、(num_inputs, output_dim) を返す
         return y
 
 if __name__ == '__main__':
@@ -52,12 +62,11 @@ if __name__ == '__main__':
     OUTPUT_SIZE = 4
     HIDDEN_SIZE = 50
     LEARNING_RATE = 1e-3
-    BATCH_SIZE = 64
+    BATCH_SIZE = 32
     NUM_EPOCHS = 10
-    NUM_LAYERS = 2
+    NUM_LAYERS = 2    # Stacking 2 RNNs together to form a stacked RNN, with 2nd RNN taking in outputs of 1st RNN
     WEIGHTS = torch.load('knock84_weights.pt')
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
 
     bi_rnn = biRNN(
         hidden_size=HIDDEN_SIZE, emb_size=EMB_SIZE, vocab_size=VOCAB_SIZE, padding_idx=PADDING_IDX,
@@ -76,16 +85,16 @@ if __name__ == '__main__':
 
 
     '''
-    epoch:1, loss_train:1.3216, acc_train:0.4170, loss_valid:1.3146, acc_valid:0.4130, time_used:2.6366
-epoch:2, loss_train:1.2738, acc_train:0.4269, loss_valid:1.2677, acc_valid:0.4273, time_used:1.9337
-epoch:3, loss_train:1.2405, acc_train:0.4296, loss_valid:1.2350, acc_valid:0.4325, time_used:1.8560
-epoch:4, loss_train:1.2172, acc_train:0.4308, loss_valid:1.2121, acc_valid:0.4303, time_used:1.8448
-epoch:5, loss_train:1.2012, acc_train:0.4297, loss_valid:1.1963, acc_valid:0.4288, time_used:1.8478
-epoch:6, loss_train:1.1903, acc_train:0.4268, loss_valid:1.1855, acc_valid:0.4303, time_used:2.1103
-epoch:7, loss_train:1.1831, acc_train:0.4289, loss_valid:1.1784, acc_valid:0.4370, time_used:1.9324
-epoch:8, loss_train:1.1784, acc_train:0.4278, loss_valid:1.1736, acc_valid:0.4430, time_used:1.9514
-epoch:9, loss_train:1.1754, acc_train:0.4261, loss_valid:1.1706, acc_valid:0.4370, time_used:2.0002
-epoch:10, loss_train:1.1732, acc_train:0.4265, loss_valid:1.1685, acc_valid:0.4415, time_used:1.8507
-train_loss:1.1732, train_acc:0.4265
-valid_loss:1.1685, valid_acc:0.4415
+epoch:1, loss_train:1.2544, acc_train:0.4229, loss_valid:1.2504, acc_valid:0.4228, time_used:2.6662
+epoch:2, loss_train:1.1949, acc_train:0.4273, loss_valid:1.1925, acc_valid:0.4310, time_used:2.0254
+epoch:3, loss_train:1.1761, acc_train:0.4249, loss_valid:1.1742, acc_valid:0.4318, time_used:2.0022
+epoch:4, loss_train:1.1703, acc_train:0.4251, loss_valid:1.1686, acc_valid:0.4318, time_used:2.0430
+epoch:5, loss_train:1.1682, acc_train:0.4253, loss_valid:1.1666, acc_valid:0.4333, time_used:2.0351
+epoch:6, loss_train:1.1673, acc_train:0.4254, loss_valid:1.1657, acc_valid:0.4355, time_used:2.0231
+epoch:7, loss_train:1.1668, acc_train:0.4258, loss_valid:1.1652, acc_valid:0.4303, time_used:1.9742
+epoch:8, loss_train:1.1664, acc_train:0.4256, loss_valid:1.1649, acc_valid:0.4370, time_used:1.9947
+epoch:9, loss_train:1.1665, acc_train:0.4284, loss_valid:1.1650, acc_valid:0.4318, time_used:2.0055
+epoch:10, loss_train:1.1668, acc_train:0.4291, loss_valid:1.1653, acc_valid:0.4258, time_used:2.0517
+train_loss:1.1668, train_acc:0.4291
+valid_loss:1.1653, valid_acc:0.4258
 '''

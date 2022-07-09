@@ -8,8 +8,6 @@ import torch
 from gensim.models import KeyedVectors
 from knock80 import *    # made ids for words
 from knock81 import *    # defined the RNN model and Dataset
-#from knock82 import cal_loss_acc, train_model    # defined how to train the model
-
 
 
 

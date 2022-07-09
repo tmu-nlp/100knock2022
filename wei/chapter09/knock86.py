@@ -18,7 +18,7 @@ class CNN(torch.nn.Module):
         else:
             self.emb = torch.nn.Embedding(vocab_size, emb_size, padding_idx=padding_idx)
         self.conv = torch.nn.Conv2d(1, output_chanels, (kernel_heights, emb_size), stride, (padding,0))
-        self.drop = torch.nn.Dropout(0.3)
+        self.drop = torch.nn.Dropout(0.3)    # 一部のneurons への　connectionを切断
         self.fc = torch.nn.Linear(output_chanels, output_size)
 
     def forward(self, x):
@@ -37,7 +37,7 @@ if __name__ == '__main__':
     PADDING_IDX = len(set(word2id.values()))
     OUTPUT_SIZE = 4
     OUTPUT_CHANNELS = 100
-    KERNEL_HEIGHTS = 3
+    KERNEL_HEIGHTS = 3    # filter_size
     STRIDE = 1
     PADDING = 1
     # BATCH_SIZE = 64

@@ -46,7 +46,7 @@ if __name__ == '__main__':
     for w,cnt in list(word2id.items())[:20]:
         print(f'{w}:{cnt}')
 
-    title = train.iloc[2, 1]
+    title = train.iloc[2, 1]      # 3行目の2列目
     print(f'title:{title}')
     print(f'ids:{get_id(title, word2id)}')
 '''

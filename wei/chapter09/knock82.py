@@ -31,9 +31,7 @@ def cal_loss_acc(model, criterion, dataset, device):
 def train_model(dataset_train, dataset_valid, batch_size, num_epochs, model, optimizer, criterion, device, collate_fn):
     model.to(device)
 
-    d_loader_train = DataLoader(dataset_train, batch_size=batch_size, shuffle=True, collate_fn=collate_fn)  # epoch毎にshuffled
-    d_loader_valid = DataLoader(dataset_valid, batch_size=len(dataset_valid), shuffle=False, drop_last=False)
-
+    d_loader_train = DataLoader(dataset_train, batch_size=batch_size, shuffle=True, collate_fn=collate_fn)     # collate_fn：实例，作为函数输入，调用__call__方法，接收dataset_train作为batch，返回一个包含keys为inputs和labels的字典
     log_train = []
     log_valid = []
 
@@ -101,8 +99,8 @@ if __name__ == '__main__':
     train_log = train_model(dataset_train, dataset_valid, batch_size=BATCH_SIZE, num_epochs=NUM_EPOCHS, model=model,optimizer=optimizer, criterion=criterion, device=device, collate_fn=None)
     visualize_logs(train_log)
 
-    train_loss, train_acc = cal_loss_acc(model, criterion, dataset_train)
-    valid_loss, valid_acc = cal_loss_acc(model, criterion, dataset_valid)
+    train_loss, train_acc = cal_loss_acc(model, criterion, dataset_train, device)
+    valid_loss, valid_acc = cal_loss_acc(model, criterion, dataset_valid, device)
     print(f'train_loss:{train_loss:.4f}, train_acc:{train_acc:.4f}')
     print(f'valid_loss:{valid_loss:.4f}, valid_acc:{valid_acc:.4f}')
 
