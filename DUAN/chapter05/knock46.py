@@ -64,4 +64,3 @@ with open('./100knock2022/DUAN/chapter05/knock46.txt', mode='w') as f:
                     continue
                 pp, term = map(list, zip(*pp_term))
                 f.write(verb+'\t'+''.join(pp)+'\t'+' '.join(term)+'\n')
-                
