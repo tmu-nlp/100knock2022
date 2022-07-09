@@ -5,7 +5,6 @@
 '''
 import torch
 from torch.utils.data import Dataset, DataLoader
-from knock80 import make_ids4words
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
@@ -33,7 +32,7 @@ class MakeDataset(Dataset):
             text,
             add_special_tokens=True,
             max_length=self.max_len,
-            pad_to_multiple_of=True
+            pad_to_max_length=True
         )
 
         ids = inputs['input_ids']
@@ -170,7 +169,7 @@ if __name__ == '__main__':
     DROP_RATE = 0.4
     OUTPUT_SIZE = 4
     BATCH_SIZE = 32
-    NUM_EPOCHS = 3
+    NUM_EPOCHS = 2
     LEARNING_RATE = 1e-3
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -180,8 +179,7 @@ if __name__ == '__main__':
     criterion = torch.nn.BCEWithLogitsLoss()
     optimizer = torch.optim.AdamW(params=model.parameters(), lr=LEARNING_RATE)
 
-    log = train_model(dataset_train, dataset_valid, model=model,criterion=criterion,
-                      optimizer=optimizer, batch_size=BATCH_SIZE,epoch=NUM_EPOCHS,device=device)
+    log = train_model(dataset_train, dataset_valid, model=model,criterion=criterion, optimizer=optimizer, batch_size=BATCH_SIZE,epoch=NUM_EPOCHS,device=device)
 
     visualization(log,'knock89.png')
     train_loss, train_acc = cal_loss_acc(model, criterion, dataset_train, device)
