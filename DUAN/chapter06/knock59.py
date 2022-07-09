@@ -12,15 +12,15 @@ import re
 
 # テキストの前処理
 def pre(text):
-  table = str.maketrans(string.punctuation, ' '*len(string.punctuation))
-  text = text.translate(table)  
-  text = text.lower()  
-  text = re.sub('[0-9]+', '0', text)  
-  return text
+    table = str.maketrans(string.punctuation, ' '*len(string.punctuation))
+    text = text.translate(table)  
+    text = text.lower()  
+    text = re.sub('[0-9]+', '0', text)  
+    return text
 
 # TF-IDFによるベクトル化までを経たデータセットを入力とする関数
 def score_lg(lg, x):
-  return [np.max(lg.predict_proba(x), axis=1), lg.predict(x)]
+    return [np.max(lg.predict_proba(x), axis=1), lg.predict(x)]
 
 # データの作成
 df = pd.read_csv('./100knock2022/DUAN/chapter06/newsCorpora.csv', header=None, sep='\t', names=['ID', 'TITLE', 'URL', 'PUBLISHER', 'CATEGORY', 'STORY', 'HOSTNAME', 'TIMESTAMP'])
@@ -55,29 +55,24 @@ lg.fit(X_train, train['CATEGORY'])
 
 result = []
 for C in tqdm(np.logspace(-5, 4, 10, base=10)):
-  lg = LogisticRegression(random_state=123, max_iter=10000, C=C)
-  lg.fit(X_train, train['CATEGORY'])
-  train_pred = score_lg(lg, X_train)
-  valid_pred = score_lg(lg, X_valid)
-  test_pred = score_lg(lg, X_test)
-  train_accuracy = accuracy_score(train['CATEGORY'], train_pred[1])
-  valid_accuracy = accuracy_score(valid['CATEGORY'], valid_pred[1])
-  test_accuracy = accuracy_score(test['CATEGORY'], test_pred[1])
-  result.append([C, train_accuracy, valid_accuracy, test_accuracy])
+    lg = LogisticRegression(random_state=123, max_iter=10000, C=C)
+    lg.fit(X_train, train['CATEGORY'])
+    train_pred = score_lg(lg, X_train)
+    valid_pred = score_lg(lg, X_valid)
+    test_pred = score_lg(lg, X_test)
+    train_accuracy = accuracy_score(train['CATEGORY'], train_pred[1])
+    valid_accuracy = accuracy_score(valid['CATEGORY'], valid_pred[1])
+    test_accuracy = accuracy_score(test['CATEGORY'], test_pred[1])
+    result.append([C, train_accuracy, valid_accuracy, test_accuracy])
 
 def objective_lg(trial):
-  l1_ratio = trial.suggest_uniform('l1_ratio', 0, 1)
-  C = trial.suggest_loguniform('C', 1e-4, 1e4)
-  lg = LogisticRegression(random_state=123, 
-                          max_iter=10000, 
-                          penalty='elasticnet', 
-                          solver='saga', 
-                          l1_ratio=l1_ratio, 
-                          C=C)
-  lg.fit(X_train, train['CATEGORY'])
-  valid_pred = score_lg(lg, X_valid)
-  valid_accuracy = accuracy_score(valid['CATEGORY'], valid_pred[1])    
-  return valid_accuracy 
+    l1_ratio = trial.suggest_uniform('l1_ratio', 0, 1)
+    C = trial.suggest_loguniform('C', 1e-4, 1e4)
+    lg = LogisticRegression(random_state=123, max_iter=10000, penalty='elasticnet', solver='saga', l1_ratio=l1_ratio, C=C)
+    lg.fit(X_train, train['CATEGORY'])
+    valid_pred = score_lg(lg, X_valid)
+    valid_accuracy = accuracy_score(valid['CATEGORY'], valid_pred[1])    
+    return valid_accuracy 
 
 study = optuna.create_study(direction='maximize')
 study.optimize(objective_lg, timeout=1000)
@@ -86,4 +81,4 @@ trial = study.best_trial
 print('  Value: {:.3f}'.format(trial.value))
 print('  Params: ')
 for key, value in trial.params.items():
-  print('    {}: {}'.format(key, value))
+    print('    {}: {}'.format(key, value))
