@@ -1,4 +1,4 @@
-#JParaで事前学習
+#KFTTでfine-tuning
 GPU1=$1
 GPU2=$2
 
