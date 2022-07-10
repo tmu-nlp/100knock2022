@@ -1,9 +1,7 @@
 GPU1=$1
 GPU2=$2
-GPU3=$3
-GPU4=$4
 BIN=/home/taisei/100knock/chapter10/output/knock95/prepro
-CUDA_VISIBLE_DEVICES=$GPU1,$GPU2,$GPU3,$GPU4 fairseq-train $BIN \
+CUDA_VISIBLE_DEVICES=$GPU1,$GPU2 fairseq-train $BIN \
     --seed 1 \
     --keep-last-epochs 10 \
     --arch transformer \
