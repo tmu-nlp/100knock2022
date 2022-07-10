@@ -1,10 +1,9 @@
 #JParaで事前学習
 GPU1=$1
 GPU2=$2
-GPU3=$3
 
 BIN=/home/taisei/100knock/chapter10/output/knock98/finetune_prepro
-CUDA_VISIBLE_DEVICES=$GPU1,$GPU2,$GPU3 fairseq-train $BIN \
+CUDA_VISIBLE_DEVICES=$GPU1,$GPU2 fairseq-train $BIN \
     --seed 1 \
     --keep-last-epochs 10 \
     --arch transformer \
