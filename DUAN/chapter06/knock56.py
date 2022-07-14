@@ -9,29 +9,27 @@ import string
 import re
 
 def score_lg(lg, x):
-  return [np.max(lg.predict_proba(x), axis=1), lg.predict(x)]
+    return [np.max(lg.predict_proba(x), axis=1), lg.predict(x)]
 
 def pre(text):
-  table = str.maketrans(string.punctuation, ' '*len(string.punctuation))
-  text = text.translate(table)  
-  text = text.lower()  
-  text = re.sub('[0-9]+', '0', text)  
-  return text
+    table = str.maketrans(string.punctuation, ' '*len(string.punctuation))
+    text = text.translate(table)  
+    text = text.lower()  
+    text = re.sub('[0-9]+', '0', text)  
+    return text
 
 def calculate_scores(y_true, y_pred):
-  precision = precision_score(test['CATEGORY'], test_pred[1], average=None, labels=['b', 'e', 't', 'm'])  
-  precision = np.append(precision, precision_score(y_true, y_pred, average='micro'))  
-  precision = np.append(precision, precision_score(y_true, y_pred, average='macro'))  
-  recall = recall_score(test['CATEGORY'], test_pred[1], average=None, labels=['b', 'e', 't', 'm'])
-  recall = np.append(recall, recall_score(y_true, y_pred, average='micro'))
-  recall = np.append(recall, recall_score(y_true, y_pred, average='macro'))
-  f1 = f1_score(test['CATEGORY'], test_pred[1], average=None, labels=['b', 'e', 't', 'm'])
-  f1 = np.append(f1, f1_score(y_true, y_pred, average='micro'))
-  f1 = np.append(f1, f1_score(y_true, y_pred, average='macro'))
-
-  scores = pd.DataFrame({'適合率': precision, '再現率': recall, 'F1スコア': f1},
-                        index=['b', 'e', 't', 'm', 'マイクロ平均', 'マクロ平均'])
-  return scores
+    precision = precision_score(test['CATEGORY'], test_pred[1], average=None, labels=['b', 'e', 't', 'm'])  
+    precision = np.append(precision, precision_score(y_true, y_pred, average='micro'))  
+    precision = np.append(precision, precision_score(y_true, y_pred, average='macro'))  
+    recall = recall_score(test['CATEGORY'], test_pred[1], average=None, labels=['b', 'e', 't', 'm'])
+    recall = np.append(recall, recall_score(y_true, y_pred, average='micro'))
+    recall = np.append(recall, recall_score(y_true, y_pred, average='macro'))
+    f1 = f1_score(test['CATEGORY'], test_pred[1], average=None, labels=['b', 'e', 't', 'm'])
+    f1 = np.append(f1, f1_score(y_true, y_pred, average='micro'))
+    f1 = np.append(f1, f1_score(y_true, y_pred, average='macro'))
+    scores = pd.DataFrame({'適合率': precision, '再現率': recall, 'F1スコア': f1}, index=['b', 'e', 't', 'm', 'マイクロ平均', 'マクロ平均'])
+    return scores
 
 df = pd.read_csv('./100knock2022/DUAN/chapter06/newsCorpora.csv', header=None, sep='\t', names=['ID', 'TITLE', 'URL', 'PUBLISHER', 'CATEGORY', 'STORY', 'HOSTNAME', 'TIMESTAMP'])
 df = df.loc[df['PUBLISHER'].isin(['Reuters', 'Huffington Post', 'Businessweek', 'Contactmusic.com', 'Daily Mail']), ['TITLE', 'CATEGORY']]

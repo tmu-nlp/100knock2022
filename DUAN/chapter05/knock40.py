@@ -1,3 +1,5 @@
+# cabocha -f1 -o ./100knock2022/DUAN/chapter05/ai.ja.txt.parsed ./100knock2022/DUAN/chapter05/ai.ja.txt
+
 import re
 
 class Morph:

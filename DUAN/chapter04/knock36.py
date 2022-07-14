@@ -8,9 +8,12 @@ f = open('./100knock2022/DUAN/chapter04/neko.txt.mecab')
 for line in f:  
     if line != 'EOS\n': 
         fields = line.split('\t')
-        attr =  fields[1].split(',')
-        morph = {'surface': fields[0], 'base': attr[6], 'pos': attr[0], 'pos1': attr[1]}
-        mors.append(morph)
+        if len(fields) != 2 or fields[0] == '':
+            continue
+        else:
+            attr =  fields[1].split(',')
+            morph = {'surface': fields[0], 'base': attr[6], 'pos': attr[0], 'pos1': attr[1]}
+            mors.append(morph)
     else:  
         sen.append(mors)
         mors = []
@@ -22,8 +25,7 @@ for s in sen:
             ans[morph['base']] += 1  
 ans = sorted(ans.items(), key=lambda x: x[1], reverse=True)
 
-keys = [a[0] for a in ans[0:10]]
-values = [a[1] for a in ans[0:10]]
-
+keys = [a[0] for a in ans[:10]]
+values = [a[1] for a in ans[:10]]
 mat.bar(keys, values)
 mat.show()
