@@ -1,0 +1,39 @@
+--beam 1
+Namespace(ignore_case=False, order=4, ref='test.en', sacrebleu=False, sentence_bleu=False, sys='output_data.txt')
+BLEU4 = 18.98, 52.7/25.7/14.9/9.3 (BP=0.911, ratio=0.915, syslen=25284, reflen=27636)
+
+--beam 2
+Namespace(ignore_case=False, order=4, ref='test.en', sacrebleu=False, sentence_bleu=False, sys='output_data.txt')
+BLEU4 = 19.81, 54.5/27.1/16.0/10.3 (BP=0.891, ratio=0.896, syslen=24775, reflen=27636)
+
+--beam 3
+Namespace(ignore_case=False, order=4, ref='test.en', sacrebleu=False, sentence_bleu=False, sys='output_data.txt')
+BLEU4 = 19.96, 54.7/27.3/16.2/10.4 (BP=0.893, ratio=0.898, syslen=24819, reflen=27636)
+
+--beam 4
+Namespace(ignore_case=False, order=4, ref='test.en', sacrebleu=False, sentence_bleu=False, sys='output_data.txt')
+BLEU4 = 19.82, 54.3/27.1/16.0/10.3 (BP=0.893, ratio=0.899, syslen=24835, reflen=27636)
+
+--beam 5
+Namespace(ignore_case=False, order=4, ref='test.en', sacrebleu=False, sentence_bleu=False, sys='output_data.txt')
+BLEU4 = 19.77, 54.3/27.1/16.0/10.3 (BP=0.892, ratio=0.897, syslen=24800, reflen=27636)
+
+--beam 6
+Namespace(ignore_case=False, order=4, ref='test.en', sacrebleu=False, sentence_bleu=False, sys='output_data.txt')
+BLEU4 = 19.80, 54.0/26.9/15.9/10.2 (BP=0.899, ratio=0.904, syslen=24980, reflen=27636)
+
+--beam 7
+Namespace(ignore_case=False, order=4, ref='test.en', sacrebleu=False, sentence_bleu=False, sys='output_data.txt')
+BLEU4 = 19.84, 54.2/27.0/16.0/10.3 (BP=0.897, ratio=0.902, syslen=24914, reflen=27636)
+
+--beam 8
+Namespace(ignore_case=False, order=4, ref='test.en', sacrebleu=False, sentence_bleu=False, sys='output_data.txt')
+BLEU4 = 19.94, 54.0/27.0/16.0/10.3 (BP=0.900, ratio=0.905, syslen=25010, reflen=27636)
+
+--beam 9
+Namespace(ignore_case=False, order=4, ref='test.en', sacrebleu=False, sentence_bleu=False, sys='output_data.txt')
+BLEU4 = 19.83, 54.2/27.0/16.0/10.4 (BP=0.893, ratio=0.898, syslen=24828, reflen=27636)
+
+--beam 10
+Namespace(ignore_case=False, order=4, ref='test.en', sacrebleu=False, sentence_bleu=False, sys='output_data.txt')
+BLEU4 = 19.89, 54.1/27.0/16.0/10.4 (BP=0.896, ratio=0.901, syslen=24889, reflen=27636)
