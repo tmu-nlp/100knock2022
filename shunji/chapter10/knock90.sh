@@ -1,0 +1,11 @@
+fairseq-preprocess \
+    --trainpref ./tokenized_data/train \
+    --validpref ./tokenized_data/dev \
+    --testpref  ./tokenized_data/test \
+    --source-lang ja \
+    --target-lang en \
+    --tokenizer space \
+    --workers 10 \
+    --thresholdsrc 5 \
+    --thresholdtgt 5 \
+    --destdir result/preprocessing 
