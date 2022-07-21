@@ -9,4 +9,4 @@ CUDA_VISIBLE_DEVICES=$GPU fairseq-train data/data-bin/kftt.ja-en \
     --criterion label_smoothed_cross_entropy --label-smoothing 0.1 \
     --max-tokens 4096 \
     --max-epoch 10 \
-| tee checkpoints/train.log
+| tee checkpoints/train.login
