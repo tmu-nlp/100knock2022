@@ -7,7 +7,6 @@ spm.SentencePieceTrainer.Train('--input=kyoto-train.ja --model_prefix=kyoto_ja -
 sp = spm.SentencePieceProcessor()
 sp.Load('kyoto_ja.model')
 
-
 with open('en-ja/en-ja.bicleaner05.txt', 'r', encoding='utf-8') as f_in:
     data = [x.split('\t') for x in f_in]
     data = [x for x in data if len(x)==4]
@@ -26,4 +25,3 @@ with open('jparacrawl.ja', 'r', encoding='utf-8') as f, open('train.jparacrawl.j
         line = sp.encode_as_pieces(line)
         line = ''.join(line)
         print(line, file=g)
-

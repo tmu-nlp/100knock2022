@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # preprocess/binarize the data
-# src:ja trg:en; preprocessed data is saved to data91
+# src:ja trg:en;
+# preprocessed data is saved to data91
 fairseq-preprocess -s ja -t en \
     --trainpref train.spacy \
     --validpref dev.spacy \

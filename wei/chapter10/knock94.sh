@@ -7,4 +7,3 @@ for N in `seq 5 11`; do
 for N in `seq 5 11`; do
   fairseq-score --sys 94.$N.out --ref test.spacy.en > 94.$N.score
   done
-

@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+
+# generate target translations
 fairseq-interactive --path save91/checkpoint3.pt data91 < test.spacy.ja | grep '^H' | cut -f3 > 92.out
 # [ja] dictionary: 49320 types
 # [en] dictionary: 61944 types

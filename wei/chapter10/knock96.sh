@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# --tensorboard-logdirを使って可視化
+# --tensorboard-logdirを使って可視化できる
 fairseq-train knock95_subwords_sp \
     --fp16 \
     --tensorboard-logdir log96 \

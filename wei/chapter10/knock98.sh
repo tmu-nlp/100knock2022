@@ -10,7 +10,7 @@ fairseq-preprocess -s ja -t en \
 
 
 #学習
-# training with different dropout rate
+# training with different learning rate
 for N in `seq 0.001 0.0005`; do
   fairseq-train data98 \
         --fp16
@@ -25,7 +25,6 @@ for N in `seq 0.001 0.0005`; do
   done
 
 #推論
-
 for N in `seq 0.001 0.0005` ; do
   fairseq-interactive data98 \
     --path checkpoints/train.jparacrawl.lr_$N/checkpoint_best.pt \

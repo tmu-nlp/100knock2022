@@ -2,6 +2,7 @@ from dataclasses import replace
 import re
 import string
 
+# 前処理
 def pre_process(text):
     # replace punctuation marks with spaces, keeping equal length
     table =str.maketrans(

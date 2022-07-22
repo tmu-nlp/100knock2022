@@ -43,4 +43,3 @@ def spacy_tokenize(src, dst):
             print(x, file=g)
 
 spacy_tokenize('95.out', '95.out.spacy')
-

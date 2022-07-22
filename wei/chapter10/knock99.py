@@ -1,6 +1,6 @@
 import streamlit as st
 import os
-import MeCab, ipadic
+import MeCab
 
 # decide title name
 st.title('knock99 demo')

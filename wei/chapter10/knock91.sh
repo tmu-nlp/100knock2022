@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # train a Transformer translation mode
 # epochs=3
-CUDA_VISIBLE_DEVICE=0     # specify which GPU to use
+# specify which GPU to use
+CUDA_VISIBLE_DEVICE=0
 
 fairseq-train data91 \
     --fp16 \

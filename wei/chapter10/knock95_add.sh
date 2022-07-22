@@ -58,4 +58,7 @@ fairseq-interactive --path save95/checkpoint_best.pt knock95_subwords_sp < test.
 
 fairseq-score --sys 95.out.spacy --ref test.spacy.en
 # Namespace(ignore_case=False, order=4, ref='test.spacy.en', sacrebleu=False, sentence_bleu=False, sys='95.out.spacy')
-# BLEU4 = 1.70, 16.7/2.8/0.7/0.3 (BP=1.000, ratio=1.350, syslen=35302, reflen=26155)???
+# BLEU4 = 1.70, 16.7/2.8/0.7/0.3 (BP=1.000, ratio=1.350, syslen=35302, reflen=26155)
+# ??? sth wrong must have happened
+
+
