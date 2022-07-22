@@ -24,6 +24,6 @@ done
 #評価
 GPU=$1
 for N in `seq 1 2 5` ; do
-    echo beam=$N >> out/out97/score97.out 
+    echo dropout=0.$N >> out/out97/score97.out 
     CUDA_VISIBLE_DEVICES=$GPU fairseq-score --sys out/out97/dropout_$N.out --ref data/kftt-data-1.0/data/tok/kyoto-dev.en >> out/out97/score97.out
 done
