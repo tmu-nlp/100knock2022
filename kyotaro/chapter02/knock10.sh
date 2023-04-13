@@ -1,1 +1,0 @@
-wc -l  popular-names.txt > knock10-sh.txt

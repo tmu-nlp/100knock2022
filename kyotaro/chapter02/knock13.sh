@@ -1,1 +1,0 @@
-paste knock12-sh1.txt knock12-sh2.txt > knock13-sh.txt

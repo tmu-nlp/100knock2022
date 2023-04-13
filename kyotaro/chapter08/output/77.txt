@@ -1,5 +1,0 @@
-1 elapsed_time : 14.427211999893188 [sec]
-2 elapsed_time : 10.637013912200928 [sec]
-4 elapsed_time : 8.721894025802612 [sec]
-8 elapsed_time : 7.6298418045043945 [sec]
-10 elapsed_time : 7.433973073959351 [sec]
