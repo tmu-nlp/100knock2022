@@ -1,1 +1,0 @@
-cut -f 1 popular-names.txt | sort | uniq -c | sort -k 1 -r > knock19-sh.txt

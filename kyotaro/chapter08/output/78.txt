@@ -1,6 +1,0 @@
-Using cuda device
-1 elapsed_time : 14.670744180679321 [sec]
-2 elapsed_time : 11.042125940322876 [sec]
-4 elapsed_time : 8.387664079666138 [sec]
-8 elapsed_time : 7.591989994049072 [sec]
-10 elapsed_time : 7.330562114715576 [sec]

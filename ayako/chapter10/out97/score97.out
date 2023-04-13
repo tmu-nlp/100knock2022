@@ -1,9 +1,0 @@
-droupout=0.1
-Namespace(ignore_case=False, order=4, ref='data/kftt-data-1.0/data/tok/kyoto-dev.en', sacrebleu=False, sentence_bleu=False, sys='out/out97/dropout_1.out')
-BLEU4 = 6.67, 28.1/9.9/4.1/1.7 (BP=1.000, ratio=1.224, syslen=29743, reflen=24309)
-dropout=0.3
-Namespace(ignore_case=False, order=4, ref='data/kftt-data-1.0/data/tok/kyoto-dev.en', sacrebleu=False, sentence_bleu=False, sys='out/out97/dropout_3.out')
-BLEU4 = 2.15, 17.4/3.9/1.0/0.3 (BP=1.000, ratio=1.269, syslen=30856, reflen=24309)
-dropout=0.5
-Namespace(ignore_case=False, order=4, ref='data/kftt-data-1.0/data/tok/kyoto-dev.en', sacrebleu=False, sentence_bleu=False, sys='out/out97/dropout_5.out')
-BLEU4 = 1.45, 14.3/2.7/0.6/0.2 (BP=1.000, ratio=1.344, syslen=32670, reflen=24309)

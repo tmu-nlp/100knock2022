@@ -1,6 +1,6 @@
-# 100knock2022
+# 100knock2023
 
-小町研2022年度新入生向け勉強会として、言語処理100本ノックに取り組みます。  
+小町研2023年度新入生向け勉強会として、言語処理100本ノックに取り組みます。  
 教材URL: https://nlp100.github.io/ja/
 
 毎週1章分（10問）解いてください。   
@@ -11,15 +11,15 @@
 初回はこのレポジトリを clone してください。
 
 ```
-$ git clone https://github.com/tmu-nlp/100knock2022.git
+$ git clone https://github.com/tmu-nlp/100knock2023.git
 ```
 
 コードを書いたら remote repository に push してください。
 チャプター名、ファイル名はすべて二桁の数字にしてください（例: `chapter01`, `knock00.py`）。
 ```
-$ git branch <任意のブランチ名(以下、b_name)> (e.g. git branch kazuma)
+$ git branch <任意のブランチ名(以下、b_name)> (e.g. git branch hajime)
 $ git checkout <b_name>
-$ git add <任意のファイル・フォルダ> (e.g. git add ./kazuma/chapter01/knock01.py)
+$ git add <任意のファイル・フォルダ> (e.g. git add ./hajime/chapter01/knock01.py)
 $ git commit -m 'your message'
 $ git pull origin main
 $ git push origin <b_name>
@@ -37,22 +37,22 @@ chapter##/knockXX.py のフォルダ名とファイル名を間違えると進�
 ![progress](progress.png)
 
 
-# 100knock2022 (English) 
+# 100knock2023 (English) 
 
-We will work NLP 100 knockings as the study meeting for the newcomers in 2021. 
+We will work NLP 100 knockings as the study meeting for the newcomers in 2023. 
 Let's solve the 10 questions every week.
 TA and participants review your code.  
 
 You should clone this repository the first time.
 ```
-$ git clone https://github.com/tmu-nlp/100knock.git
+$ git clone https://github.com/tmu-nlp/100knock2023.git
 ```
 
 "##" and "XX" mean "two-digit question number". (e.g. `chapter01`, `knock00.py`)
 ```
-$ git branch <any branch name(b_name)> (e.g. git branch kazuma)
+$ git branch <any branch name(b_name)> (e.g. git branch hajime)
 $ git checkout <b_name>
-$ git add <any file or folder> (e.g. git add ./kazuma/chapter01/knock01.py)
+$ git add <any file or folder> (e.g. git add ./hajime/chapter01/knock01.py)
 $ git commit -m 'your message'
 $ git pull origin main
 $ git push origin <b_name>

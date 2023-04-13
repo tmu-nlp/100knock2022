@@ -1,1 +1,0 @@
-fairseq-interactive --path save91/checkpoint_best.pt data91 < test.spacy.ja | grep '^H' | cut -f3 > 92.out
