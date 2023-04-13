@@ -19,8 +19,7 @@ class User:
 def get_progress() -> List[User]:
     cur = Path(".")
     users = list(
-        filter(lambda x: x.is_dir() and not is_ignored(
-            x.name), sorted(cur.iterdir()))
+        filter(lambda x: x.is_dir() and not is_ignored(x.name), sorted(cur.iterdir()))
     )
 
     progress = list()
@@ -60,28 +59,29 @@ def plot_progress(users: np.array, scores: np.array):
         )
     today = datetime.date.today()
     date_list = list()
-    date_list.append(datetime.date(2023, 4, 24))
-    date_list.append(datetime.date(2023, 5, 1))
-    date_list.append(datetime.date(2023, 5, 8))
-    date_list.append(datetime.date(2023, 5, 15))
-    date_list.append(datetime.date(2023, 5, 22))
-    date_list.append(datetime.date(2023, 5, 29))
-    date_list.append(datetime.date(2023, 6, 5))
-    date_list.append(datetime.date(2023, 6, 19))
-    date_list.append(datetime.date(2023, 7, 3))
-    date_list.append(datetime.date(2023, 7, 24))
+    date_list.append(datetime.date(2022, 4, 22))
+    date_list.append(datetime.date(2022, 5, 6))
+    date_list.append(datetime.date(2022, 5, 13))
+    date_list.append(datetime.date(2022, 5, 20))
+    date_list.append(datetime.date(2022, 5, 27))
+    date_list.append(datetime.date(2022, 6, 3))
+    date_list.append(datetime.date(2022, 6, 10))
+    date_list.append(datetime.date(2022, 6, 24))
+    date_list.append(datetime.date(2022, 7, 8))
+    date_list.append(datetime.date(2022, 7, 22))
 
     d = [date for date in date_list if today >= date]
     xmin, xmax = plt.xlim()
     if len(d) != 10:
         label = "{}Border".format(str(date_list[len(d)])[5:])
-        plt.hlines((len(d)+1) * 10, xmin, xmax, linewidth=2,
+        plt.hlines((len(d)+1) * 10, xmin, xmax, linewidth=2, 
                    linestyle='dashed', color="gray", label=label)
         plt.xlim(xmin, xmax)
 
     label = "{}Border".format(str(d[-1])[5:])
     plt.hlines(len(d) * 10, xmin, xmax, linewidth=4, color="red", label=label)
     plt.xlim(xmin, xmax)
+
 
     # グラフの設定
     plt.xticks(rotation=30, fontsize=10)
@@ -111,7 +111,7 @@ if __name__ == "__main__":
     CHAPTER = 10
     QUESTIONS = [10] * CHAPTER
     # progress bar に表示しないディレクトリ名
-    IGNORE = ["hajime", "ling"]
-    def is_ignored(name): return name in IGNORE or name.startswith(".")
+    IGNORE = ["kiyuna", "tomoshige"]
+    is_ignored = lambda name: name in IGNORE or name.startswith(".")
 
     main()

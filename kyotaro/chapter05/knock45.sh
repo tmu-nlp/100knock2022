@@ -1,0 +1,1 @@
+cat test.txt | sort | uniq -c | sort -nr | head -10
